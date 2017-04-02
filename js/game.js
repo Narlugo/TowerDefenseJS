@@ -1,5 +1,5 @@
 // variables
-var money = 100;
+var money = 2000;
 var wallTrump;
 var trump;
 var enemy;
@@ -14,6 +14,7 @@ function preload() {
   cabane = loadImage("img/Cabane.png");
   map = loadImage("img/Map.png");
   moneyImg = loadImage("img/TrumpMoney.png");
+  son_explosion = loadSound('song/wallBroke.m4a');
 
   turretImg = loadImage("img/Tower.png");
   canonImg = loadImage("img/canon.png");
@@ -22,7 +23,14 @@ function preload() {
 
   mechant1Cry = loadSound("song/mechant1.mp3");
   mechant1Draw = loadImage("img/mechant1.png");
-  son_explosion = loadSound('song/wallBroke.m4a');
+  mechant2Cry = loadSound("song/mechant2.mp3");
+  mechant2Draw = loadImage("img/mechant2.png");
+  mechant3Cry = loadSound("song/mechant3.mp3");
+  mechant3Draw = loadImage("img/mechant3.png");
+  mechant4Cry = loadSound("song/mechant4.mp3");
+  mechant4Draw = loadImage("img/mechant4.png");
+
+
 
   fontRegular = loadFont("font/THE_DONALD.ttf");
 }
@@ -32,20 +40,31 @@ function setup(){
 	wallTrump = new Wall();
   trump = new Trump();
   enemy = new Ennemy();
+  defense = new Defense();
+  canon = new Defense();
+  tank = new Defense();
+  turret = new Defense();
+  bombe = new Defense();
 
   selected = createSprite(mouseX,mouseY);
   selected.visible = false;
 
-  enemy.init("mechant1",200,200);
+  enemy.init("mechant4",200,200);
 
-  canon = createSprite(50,50);
+  canon.init("canon",50,50);
+  tank.init("tank",150,50);
+  turret.init("turret",250,50);
+  bombe.init("bombe",350,50);
+
+
+  /*canon = createSprite(50,50);
   canon.addImage(canonImg);
   tank = createSprite(150,50);
   tank.addImage(tankImg);
   turret = createSprite(250, 50);
   turret.addImage(turretImg);
   bombe = createSprite(350, 50);
-  bombe.addImage(bombeImg);
+  bombe.addImage(bombeImg);*/
 }
 
 function draw(){
@@ -61,10 +80,6 @@ function draw(){
 	if(frameCount % 100 == 1){
         wallTrump.addRow();
         wallTrump.show();
-  }
-
-  if(frameCount % 40 == 0) {
-    money+=300;
   }
 
   fill(0).strokeWeight(0).textSize(16);
@@ -102,20 +117,28 @@ function mousePressed(){
   else {
     switch (weaponChoose) {
       case "canon":
-        selected = createSprite(mouseX,mouseY);
-        selected.addImage(canonImg);
+        if(money-canon.cost >= 0) {
+          defense.init("canon",mouseX,mouseY);
+          money-=defense.cost;
+        }
         break;
       case "tank":
-        selected = createSprite(mouseX,mouseY);
-        selected.addImage(tankImg);
+        if(money-tank.cost >= 0) {
+          defense.init("tank",mouseX,mouseY);
+          money-=defense.cost;
+        }
         break;
       case "turret":
-        selected = createSprite(mouseX,mouseY);
-        selected.addImage(turretImg);
+        if(money-turret.cost >= 0) {
+          defense.init("turret",mouseX,mouseY);
+          money-=defense.cost;
+        }
         break;
       case "bombe":
-        selected = createSprite(mouseX,mouseY);
-        selected.addImage(bombeImg);
+        if(money-bombe.cost >= 0) {
+          defense.init("bombe",mouseX,mouseY);
+          money-=defense.cost;
+        }
         break;
       default:
         break;

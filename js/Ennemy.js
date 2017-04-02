@@ -1,7 +1,6 @@
 function Ennemy() {
 	this.type;
-	this.img;
-	this.cry;
+	this.cry=null;
 
 	this.sprite;
 
@@ -10,13 +9,30 @@ function Ennemy() {
 
 	this.init = function(typeEnneemi, x, y) {
 		this.type = typeEnneemi;
-		this.img  = mechant1Draw;
-		this.cry = mechant1Cry;
 		this.x = x;
 		this.y = y;
 
 		this.sprite = createSprite(this.x, this.y);
-		this.sprite.addImage(this.img);
+		switch(this.type) {
+			case "mechant1":
+				this.sprite.addImage(mechant1Draw);
+				this.cry = mechant1Cry;
+				break;
+			case "mechant2":
+				this.sprite.addImage(mechant2Draw);
+				this.cry = mechant2Cry;
+				break;
+			case "mechant3":
+				this.sprite.addImage(mechant3Draw);
+				this.cry = mechant3Cry;
+				break;
+			case "mechant4":
+				this.sprite.addImage(mechant4Draw);
+				this.cry = mechant4Cry;
+				break;
+			default:
+				break;
+		}
   		this.sprite.setSpeed(5, 0);
   		this.scream();
 
@@ -24,7 +40,7 @@ function Ennemy() {
 
 	this.scream = function() {
 		this.cry.play();
-		this.cry.setVolume(0.01);
+		this.cry.setVolume(0.1);
 	}
 
 	this.update = function() {
