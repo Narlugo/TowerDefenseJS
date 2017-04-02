@@ -34,7 +34,7 @@ function Ennemy() {
 				break;
 		}
   		this.sprite.setSpeed(5, 0);
-  		this.scream();
+  		//this.scream();
 
 	}
 

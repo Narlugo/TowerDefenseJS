@@ -60,20 +60,13 @@ function setup(){
 
   enemy.init("mechant1",200,200);
 
+  fill(0).strokeWeight(0).textSize(16);
+  textFont(fontRegular);
+
   canon.init("canon",50,50);
-  tank.init("tank",150,50);
+  tank.init("tank",150,50);;
   turret.init("turret",250,50);
   bombe.init("bombe",350,50);
-
-
-  /*canon = createSprite(50,50);
-  canon.addImage(canonImg);
-  tank = createSprite(150,50);
-  tank.addImage(tankImg);
-  turret = createSprite(250, 50);
-  turret.addImage(turretImg);
-  bombe = createSprite(350, 50);
-  bombe.addImage(bombeImg);*/
 }
 
 function draw(){
@@ -93,7 +86,11 @@ function draw(){
 
   fill(0).strokeWeight(0).textSize(16);
   textFont(fontRegular);
-  text(money,720,80);
+  text(money+"$",720,80);
+  text(canon.cost+"$",30,110);
+  text(tank.cost+"$",120,110)
+  text(turret.cost+"$",220,110);
+  text(bombe.cost+"$",320,110);
 
   selected.position.x = mouseX;
   selected.position.y = mouseY;
@@ -103,10 +100,6 @@ function draw(){
 
   drawSprites();
 }
-
-/*function windowResized() {
-	resizeCanvas(windowWidth, windowHeight);
-}*/
 
 function mousePressed(){
   selected.depth = 15;
