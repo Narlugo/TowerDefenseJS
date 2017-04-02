@@ -1,5 +1,5 @@
 // variables
-var score = 0;
+var money = 100;
 var wallTrump;
 var trump;
 var enemy;
@@ -12,6 +12,7 @@ function preload() {
   tower = loadImage("img/Tower.png");
   cabane = loadImage("img/Cabane.png");
   map = loadImage("img/Map.png");
+  moneyImg = loadImage("img/TrumpMoney.png");
 
   turretImg = loadImage("img/Tower.png");
   canonImg = loadImage("img/canon.png");
@@ -21,6 +22,8 @@ function preload() {
   mechant1Cry = loadSound("song/mechant1.mp3");
   mechant1Draw = loadImage("img/mechant1.png");
   son_explosion = loadSound('song/wallBroke.m4a');
+
+  fontRegular = loadFont("font/THE_DONALD.ttf");
 }
 
 function setup(){
@@ -44,6 +47,9 @@ function setup(){
 function draw(){
 	background(255);
   image(map,0,0,840,800);
+  fill(255, 123, 20);
+  rect(0,0,840,120, 10);
+  image(moneyImg,710,10);
   image(cabane,0,150);
   trump.show(560 - wallTrump.nbcolumn*(20+2));
   enemy.update();
@@ -51,8 +57,15 @@ function draw(){
 	if(frameCount % 100 == 1){
         wallTrump.addRow();
         wallTrump.show();
-    }
+  }
 
+  if(frameCount % 40 == 0) {
+    money+=300;
+  }
+
+  fill(0).strokeWeight(0).textSize(16);
+  textFont(fontRegular);
+  text(money,720,80);
   drawSprites();
 }
 

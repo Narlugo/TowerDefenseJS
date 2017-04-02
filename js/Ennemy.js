@@ -23,6 +23,7 @@ function Ennemy() {
 	}
 
 	this.scream = function() {
+		this.cry.setVolume(0.01);
 		this.cry.play();
 	}
 
