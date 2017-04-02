@@ -59,10 +59,9 @@ function setup(){
   range.visible = false;
 
   enemy.init("mechant1",200,200);
-
+  
   fill(0).strokeWeight(0).textSize(16);
   textFont(fontRegular);
-
   canon.init("canon",50,50);
   tank.init("tank",150,50);;
   turret.init("turret",250,50);
@@ -97,6 +96,7 @@ function draw(){
 
   range.position.x = mouseX;
   range.position.y = mouseY;
+
 
   drawSprites();
 }

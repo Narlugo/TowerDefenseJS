@@ -8,7 +8,7 @@ function Defense() {
 
 	this.rate_of_fire;
 	this.attack_range;
-	this.damage;	
+	this.damage;
 	this.place_range;
 
 	this.sprite;
@@ -39,6 +39,12 @@ function Defense() {
 			default:
 				break;
 		}
-  		
+
 	}
+
+	this.shoot = function(enemmy,bullet){
+		enemmy.remove();
+		bullet.remove();
+	}
+
 }
