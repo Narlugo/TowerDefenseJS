@@ -60,6 +60,7 @@ function setup(){
 
   enemy.init("mechant1",200,200);
 
+
   canon.init("canon",50,50);
   tank.init("tank",150,50);
   turret.init("turret",250,50);
@@ -100,6 +101,7 @@ function draw(){
 
   range.position.x = mouseX;
   range.position.y = mouseY;
+
 
   drawSprites();
 }
