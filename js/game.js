@@ -5,6 +5,7 @@ var trump;
 var enemy;
 var weaponChoose;
 var selected;
+var range;
 
 // fonction
 function preload() {
@@ -24,6 +25,11 @@ function preload() {
   mechant1Draw = loadImage("img/mechant1.png");
   son_explosion = loadSound('song/wallBroke.m4a');
 
+  turretRangeImg = loadImage("img/rangeTurret.png");
+  canonRangeImg = loadImage("img/rangeCanon.png");
+  bombeRangeImg = loadImage("img/rangeBombe.png");
+  tankRangeImg = loadImage("img/rangeTank.png");
+
   fontRegular = loadFont("font/THE_DONALD.ttf");
 }
 
@@ -35,6 +41,9 @@ function setup(){
 
   selected = createSprite(mouseX,mouseY);
   selected.visible = false;
+
+  range = createSprite(mouseX,mouseY);
+  range.visible = false;
 
   enemy.init("mechant1",200,200);
 
@@ -74,6 +83,9 @@ function draw(){
   selected.position.x = mouseX;
   selected.position.y = mouseY;
 
+  range.position.x = mouseX;
+  range.position.y = mouseY;
+
   drawSprites();
 }
 
@@ -82,40 +94,61 @@ function draw(){
 }*/
 
 function mousePressed(){
-  selected.visible = true;
+  selected.depth = 15;
+  range.depth = 5;
   if (dist(mouseX, mouseY, 50, 50) < 75) {
+    selected.visible = true;
+    range.visible = true;
     weaponChoose = "canon";
     selected.addImage(canonImg);
+    range.addImage(canonRangeImg);
   }
   else if (dist(mouseX, mouseY, 150, 50) < 75) {
+    selected.visible = true
+    range.visible = true;
     weaponChoose = "tank";
     selected.addImage(tankImg);
+    range.addImage(tankRangeImg);
   }
   else if (dist(mouseX, mouseY, 250, 50) < 75) {
+    selected.visible = true;
+    range.visible = true;
     weaponChoose = "turret";
     selected.addImage(turretImg);
+    range.addImage(turretRangeImg);
   }
   else if (dist(mouseX, mouseY, 350, 50) < 75) {
+    selected.visible = true;
+    range.visible = true;
     weaponChoose = "bombe";
     selected.addImage(bombeImg);
+    range.addImage(bombeRangeImg);
   }
   else {
     switch (weaponChoose) {
       case "canon":
         selected = createSprite(mouseX,mouseY);
         selected.addImage(canonImg);
+        selected.depth = 15;
+        range.depth = 5;
         break;
       case "tank":
         selected = createSprite(mouseX,mouseY);
         selected.addImage(tankImg);
+        selected.depth = 15;
+        range.depth = 5;
         break;
       case "turret":
         selected = createSprite(mouseX,mouseY);
         selected.addImage(turretImg);
+        selected.depth = 15;
+        range.depth = 5;
         break;
       case "bombe":
         selected = createSprite(mouseX,mouseY);
         selected.addImage(bombeImg);
+        selected.depth = 15;
+        range.depth = 5;
         break;
       default:
         break;
