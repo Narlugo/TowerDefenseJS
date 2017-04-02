@@ -4,9 +4,10 @@ var wallTrump;
 var trump;
 var enemy;
 var weaponChoose;
+var selected;
 
 // fonction
-function preload() {     
+function preload() {
   // Image
   trump = loadImage("img/Trump.png");
   tower = loadImage("img/Tower.png");
@@ -32,8 +33,11 @@ function setup(){
   trump = new Trump();
   enemy = new Ennemy();
 
+  selected = createSprite(mouseX,mouseY);
+  selected.visible = false;
+
   enemy.init("mechant1",200,200);
-  
+
   canon = createSprite(50,50);
   canon.addImage(canonImg);
   tank = createSprite(150,50);
@@ -66,6 +70,10 @@ function draw(){
   fill(0).strokeWeight(0).textSize(16);
   textFont(fontRegular);
   text(money,720,80);
+
+  selected.position.x = mouseX;
+  selected.position.y = mouseY;
+
   drawSprites();
 }
 
@@ -74,17 +82,22 @@ function draw(){
 }*/
 
 function mousePressed(){
+  selected.visible = true;
   if (dist(mouseX, mouseY, 50, 50) < 75) {
     weaponChoose = "canon";
+    selected.addImage(canonImg);
   }
   else if (dist(mouseX, mouseY, 150, 50) < 75) {
     weaponChoose = "tank";
+    selected.addImage(tankImg);
   }
   else if (dist(mouseX, mouseY, 250, 50) < 75) {
     weaponChoose = "turret";
+    selected.addImage(turretImg);
   }
   else if (dist(mouseX, mouseY, 350, 50) < 75) {
     weaponChoose = "bombe";
+    selected.addImage(bombeImg);
   }
   else {
     switch (weaponChoose) {

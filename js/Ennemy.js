@@ -19,12 +19,12 @@ function Ennemy() {
 		this.sprite.addImage(this.img);
   		this.sprite.setSpeed(5, 0);
   		this.scream();
-		
+
 	}
 
 	this.scream = function() {
-		this.cry.setVolume(0.01);
 		this.cry.play();
+		this.cry.setVolume(0.01);
 	}
 
 	this.update = function() {
