@@ -6,6 +6,8 @@ var enemy;
 var weaponChoose;
 var selected;
 var range;
+var ennemies;
+var defenses;
 
 // fonction
 function preload() {
@@ -31,8 +33,6 @@ function preload() {
   mechant4Cry = loadSound("song/mechant4.mp3");
   mechant4Draw = loadImage("img/mechant4.png");
 
-
-
   turretRangeImg = loadImage("img/rangeTurret.png");
   canonRangeImg = loadImage("img/rangeCanon.png");
   bombeRangeImg = loadImage("img/rangeBombe.png");
@@ -43,29 +43,7 @@ function preload() {
 
 function setup(){
 	createCanvas(windowWidth, windowHeight);
-	wallTrump = new Wall();
-  trump = new Trump();
-  enemy = new Ennemy();
-  defense = new Defense();
-  canon = new Defense();
-  tank = new Defense();
-  turret = new Defense();
-  bombe = new Defense();
-
-  selected = createSprite(mouseX,mouseY);
-  selected.visible = false;
-
-  range = createSprite(mouseX,mouseY);
-  range.visible = false;
-
-  enemy.init("mechant1",200,200);
-  
-  fill(0).strokeWeight(0).textSize(16);
-  textFont(fontRegular);
-  canon.init("canon",50,50);
-  tank.init("tank",150,50);;
-  turret.init("turret",250,50);
-  bombe.init("bombe",350,50);
+  setGame();
 }
 
 function draw(){
@@ -162,4 +140,33 @@ function mousePressed(){
         break;
     }
   }
+}
+
+function setGame() {
+  //instancie les variables
+  wallTrump = new Wall();
+  trump = new Trump();
+  enemy = new Ennemy();
+  ennemies = new Group();
+  defense = new Defense();
+  defenses = new Group();
+  canon = new Defense();
+  tank = new Defense();
+  turret = new Defense();
+  bombe = new Defense();
+
+  //créer les sprites 
+  selected = createSprite(mouseX,mouseY);
+  selected.visible = false;
+  range = createSprite(mouseX,mouseY);
+  range.visible = false;
+
+  ennemies.push(enemy.init("mechant1",200,200).sprite);
+  
+  fill(0).strokeWeight(0).textSize(16);
+  textFont(fontRegular);
+  canon.init("canon",50,50);
+  tank.init("tank",150,50);;
+  turret.init("turret",250,50);
+  bombe.init("bombe",350,50);
 }
