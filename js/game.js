@@ -11,6 +11,8 @@ var canon;
 var tank;
 var turret;
 var bombe;
+var ennemies;
+var defenses;
 
 // fonction
 function preload() {
@@ -45,8 +47,8 @@ function preload() {
 }
 
 function setup(){
-  createCanvas(windowWidth, windowHeight);
-  reset();
+	createCanvas(windowWidth, windowHeight);
+  setGame();
 }
 
 function draw(){
@@ -153,16 +155,20 @@ function mousePressed(){
   }
 }
 
-function reset() {
-  //canva.removeSprites();
+function setGame() {
+  //instancie les variables
   wallTrump = new Wall();
   trump = new Trump();
   enemy = new Ennemy();
+  ennemies = new Group();
   defense = new Defense();
+  defenses = new Group();
   canon = new Defense();
   tank = new Defense();
   turret = new Defense();
   bombe = new Defense();
+
+  //créer les sprites
   selected = createSprite(mouseX,mouseY);
   selected.visible = false;
   range = createSprite(mouseX,mouseY);
@@ -170,6 +176,7 @@ function reset() {
 
   enemy.init("mechant1",200,200);
 
+  //ennemies.push(enemy.init("mechant1",200,200).sprite);
   fill(0).strokeWeight(0).textSize(16);
   textFont(fontRegular);
   canon.init("canon",50,50);
