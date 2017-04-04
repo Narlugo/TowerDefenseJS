@@ -1,6 +1,6 @@
 function Wall() {
 	this.x = 865;
-	this.y = 790; 
+	this.y = 790;
 	this.nbcolumn = 5;
 	this.nbrow = 6;
 	this.wall = new Group();
@@ -24,4 +24,18 @@ function Wall() {
 	this.removeRow = function() {
 		this.nbcolumn--;
 	};
+
+	this.reachMax = function () {
+		if(this.nbcolumn == 26){
+			return true;
+		}
+		return false;
+	}
+
+	this.reachMin = function() {
+		if(this.nbcolumn == 0){
+			return true;
+		}
+		return false;
+	}
 }

@@ -1,16 +1,21 @@
 // variables
-var money = 2000;
-var wallTrump;
-var trump;
-var enemy;
+var money;
 var weaponChoose;
 var selected;
 var range;
+var wallTrump;
+var trump;
+var enemy;
+var defense;
+var canon;
+var tank;
+var turret;
+var bombe;
 
 // fonction
 function preload() {
   // Image
-  trump = loadImage("img/Trump.png");
+  trumpImg = loadImage("img/Trump.png");
   tower = loadImage("img/Tower.png");
   cabane = loadImage("img/Cabane.png");
   map = loadImage("img/Map.png");
@@ -31,8 +36,6 @@ function preload() {
   mechant4Cry = loadSound("song/mechant4.mp3");
   mechant4Draw = loadImage("img/mechant4.png");
 
-
-
   turretRangeImg = loadImage("img/rangeTurret.png");
   canonRangeImg = loadImage("img/rangeCanon.png");
   bombeRangeImg = loadImage("img/rangeBombe.png");
@@ -42,30 +45,8 @@ function preload() {
 }
 
 function setup(){
-	createCanvas(windowWidth, windowHeight);
-	wallTrump = new Wall();
-  trump = new Trump();
-  enemy = new Ennemy();
-  defense = new Defense();
-  canon = new Defense();
-  tank = new Defense();
-  turret = new Defense();
-  bombe = new Defense();
-
-  selected = createSprite(mouseX,mouseY);
-  selected.visible = false;
-
-  range = createSprite(mouseX,mouseY);
-  range.visible = false;
-
-  enemy.init("mechant1",200,200);
-  
-  fill(0).strokeWeight(0).textSize(16);
-  textFont(fontRegular);
-  canon.init("canon",50,50);
-  tank.init("tank",150,50);;
-  turret.init("turret",250,50);
-  bombe.init("bombe",350,50);
+  createCanvas(windowWidth, windowHeight);
+  reset();
 }
 
 function draw(){
@@ -87,7 +68,7 @@ function draw(){
   textFont(fontRegular);
   text(money+"$",720,80);
   text(canon.cost+"$",30,110);
-  text(tank.cost+"$",120,110)
+  text(tank.cost+"$",120,110);
   text(turret.cost+"$",220,110);
   text(bombe.cost+"$",320,110);
 
@@ -97,8 +78,16 @@ function draw(){
   range.position.x = mouseX;
   range.position.y = mouseY;
 
-
   drawSprites();
+
+  if(wallTrump.reachMax()){
+    alert("Trump Win");
+    wallTrump.wall.removeSprites();
+    reset();
+  }
+  if(wallTrump.reachMin()){
+    alert("migrant Win");
+  }
 }
 
 function mousePressed(){
@@ -162,4 +151,32 @@ function mousePressed(){
         break;
     }
   }
+}
+
+function reset() {
+  //canva.removeSprites();
+  wallTrump = new Wall();
+  trump = new Trump();
+  enemy = new Ennemy();
+  defense = new Defense();
+  canon = new Defense();
+  tank = new Defense();
+  turret = new Defense();
+  bombe = new Defense();
+  selected = createSprite(mouseX,mouseY);
+  selected.visible = false;
+  range = createSprite(mouseX,mouseY);
+  range.visible = false;
+
+  enemy.init("mechant1",200,200);
+
+  fill(0).strokeWeight(0).textSize(16);
+  textFont(fontRegular);
+  canon.init("canon",50,50);
+  tank.init("tank",150,50);;
+  turret.init("turret",250,50);
+  bombe.init("bombe",350,50);
+
+  money = 20000;
+  //mettre les groupes de defense = []
 }
